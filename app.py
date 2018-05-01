@@ -10,7 +10,7 @@ app = Flask(__name__)
 
 # CONFIG MYSQL
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
+app.config['MYSQL_USER'] = 'torrey'
 app.config['MYSQL_PASSWORD'] = 'Tfresh.2217'
 app.config['MYSQL_DB'] = 'py_flask_app'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
@@ -42,7 +42,7 @@ def share():
 # REGISTER FORM
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.Length(min=4, max=25)])
+    username = StringField('Username', [validators.Length(min=6, max=18)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
     password = PasswordField('Password', [
         validators.DataRequired(),
@@ -200,5 +200,6 @@ def dashboard():
     return render_template('dashboard.html')
 
 if __name__ == '__main__':
+    # GET SECRET_KEY
     app.secret_key = os.environ.get('SECRET_KEY', None)
     app.run(debug=True)
