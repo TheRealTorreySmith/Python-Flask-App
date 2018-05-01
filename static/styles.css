@@ -1,0 +1,93 @@
+/* ALL PAGES */
+
+.jumbotron {
+  margin-top: 40px;
+}
+
+/* NAV */
+
+.dropdown-toggle:hover {
+  cursor: pointer;
+}
+
+.btn-outline-success {
+  color: white;
+  border-color: grey;
+  margin-right: 10px;
+}
+
+.btn-outline-success:hover {
+  background-color: #0069d9;
+  border-color: #0069d9;
+}
+
+
+.btn-outline-success:not(:disabled):not(.disabled):active {
+  background-color: #0069d9;
+  border-color: #0069d9;
+}
+
+.btn-outline-success:focus {
+  box-shadow: 0 0 0 0.2rem #0069d9;
+}
+
+.btn-outline-success:not(:disabled):not(.disabled):active:focus {
+  box-shadow: 0 0 0 0.2rem white;
+}
+
+.form-inline {
+  align-items: flex-end;
+}
+
+/* REGISTER */
+
+.register-title {
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+/* LOGIN */
+
+.login-title {
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+#inputUsername {
+  margin-bottom: 20px;
+}
+
+#inputPassword {
+  margin-bottom: 30px;
+}
+
+.login-button {
+  margin-bottom: 30px;
+  margin-top: 30px;
+}
+
+.change-password {
+  margin-left: 100px;
+}
+
+/* RESET PASSWORD */
+
+#newPassword {
+  margin-bottom: 15px;
+}
+
+#confirmNewPassword {
+  margin-bottom: 25px;
+}
+
+#currentPassword {
+  margin-bottom: 15px;
+}
+
+#username {
+  margin-bottom: 15px;
+}
+
+.reset-password-title {
+  margin-top: 30px;
+}

@@ -1,0 +1,27 @@
+{% extends 'layout.html' %}
+{% include 'includes/_home_navbar.html' %}
+{% block body %}
+<h2 class="reset-password-title text-center">Reset Password</h2>
+{% from "includes/_formhelpers.html" import render_field %}
+<div class="row">
+  <div class="col-lg-3 col-md-2 col-sm-1">
+  </div>
+  <div class="col-lg-6 col-md-8 col-sm-10 text-center">
+    <form method="POST">
+      <img class="mb-4" src="https://cdn-images-1.medium.com/max/1224/1*7EUX9QIjq2x1JyFKcjhXsA.png" alt="" width="200" height="100">
+      <label for="inputUsername" class="sr-only">Username</label>
+      <input type="username" id="username" name="username" class="form-control" placeholder="Username" required autofocus>
+      <label for="currentPassword" class="sr-only">Current Password</label>
+      <input type="password" id="currentPassword" name="old-password" class="form-control" placeholder="Current Password" required>
+      <label for="newPassword" class="sr-only">New Password</label>
+      <input type="password" id="newPassword" name="new-password" class="form-control" placeholder="New Password" required>
+      <label for="confirmNewPassword" class="sr-only">Confirm New Password</label>
+      <input type="password" id="confirmNewPassword" name="confirm-password" class="form-control" placeholder="Confirm New Password" required>
+      <button class="btn btn-lg btn-primary btn-block reset-button" type="submit">Reset</button>
+      <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+    </form>
+  </div>
+  <div class="col-lg-3 col-md-2 col-sm-1">
+  </div>
+</div>
+{% endblock %}
