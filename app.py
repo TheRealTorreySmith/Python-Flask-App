@@ -216,7 +216,6 @@ def dashboard():
                             )
 
         print(call.sid)
-    
     # response = VoiceResponse()
     # response.say('Hello World')
     # response.play('https://api.twilio.com/Cowbell.mp3')
