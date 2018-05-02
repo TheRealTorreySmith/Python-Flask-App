@@ -225,10 +225,10 @@ def dashboard():
 
 # HISTORY ROUTE
 
-@app.route('/history')
-@is_logged_in
-def history():
-    return render_template('history.html')
+# @app.route('/history')
+# @is_logged_in
+# def history():
+#     return render_template('history.html')
 
 # DELETE ROUTE
 @app.route('/delete')
@@ -238,5 +238,5 @@ def delete():
 
 if __name__ == '__main__':
     # GET SECRET_KEY
-    app.secret_key = os.getenv('SECRET_KEY')
+    app.secret_key = os.environ.get('SECRET_KEY', None)
     app.run(debug=True)
