@@ -30,7 +30,7 @@ app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
 
 # INITIALIZE MYSQL
-mysql = MySQL(app)
+# mysql = MySQL(app)
 
 # LANDING PAGE ROUTE
 @app.route('/')
