@@ -3,14 +3,11 @@
     <ul class=flashes>
     {% for category, message in messages %}
     <div class="row">
-      <div class="col-lg-3">
-      </div>
-      <div class="col-lg-6">
-        <div class="alert alert-{{ category }}">{{ message }}
+      <div class="col-lg-3"></div>
+        <div class="col-lg-6">
+          <div class="alert alert-{{ category }} text-center">{{ message }}</div>
         </div>
-      </div>
-      <div class="col-lg-3">
-      </div>
+      <div class="col-lg-3"></div>
     </div>
     {% endfor %}
     </ul>
@@ -22,7 +19,7 @@
     <div class="col-lg-3">
     </div>
     <div class="col-lg-6">
-      <div class="alert alert-danger">{{error}}
+      <div class="alert alert-danger text-center">{{error}}
       </div>
     </div>
     <div class="col-lg-3">
@@ -35,7 +32,7 @@
     <div class="col-lg-3">
     </div>
     <div class="col-lg-6">
-      <div class="alert alert-success">{{msg}}
+      <div class="alert alert-success text-center">{{msg}}
       </div>
     </div>
     <div class="col-lg-3">

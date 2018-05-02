@@ -4,6 +4,11 @@ from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
+from twilio.rest import Client
+from dotenv import load_dotenv
+from pathlib import Path
+env_path = Path('.') / '.env'
+load_dotenv(dotenv_path=env_path)
 import os
 
 app = Flask(__name__)
@@ -29,15 +34,15 @@ def landing():
 def about():
     return render_template('about.html')
 
-# CONTACT ROUTE
-@app.route('/contact')
-def contact():
-    return render_template('contact.html')
-
 # SHARE ROUTE
 @app.route('/share')
 def share():
     return render_template('share.html')
+
+# CONTACT ROUTE
+@app.route('/contact')
+def contact():
+    return render_template('contact.html')
 
 # REGISTER FORM
 class RegisterForm(Form):
@@ -46,7 +51,7 @@ class RegisterForm(Form):
     email = StringField('Email', [validators.Length(min=6, max=50)])
     password = PasswordField('Password', [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords do not match')
+        validators.EqualTo('confirm', message='Passwords do not match!')
         ])
     confirm = PasswordField('Confirm Password')
 
@@ -73,7 +78,7 @@ def register():
         cur.close()
 
         # FLASH MESSAGE
-        flash('You are now registered and can login', 'success')
+        flash('You are now registered and can login!', 'success')
 
         return redirect(url_for('login'))
     return render_template('register.html', form=form)
@@ -106,16 +111,16 @@ def login():
                 # PASSED
                 session['logged_in'] = True
                 session['username'] = username
-                flash('You are now logged in', 'success')
+                flash('You are now logged in!', 'success')
                 return redirect(url_for('dashboard'))
             else:
-                error = 'Invalid login'
+                error = 'Invalid login!'
                 return render_template('login.html', error=error)
 
             # CLOSE CONNECTION
             cur.close()
         else:
-            error = 'Username not found'
+            error = 'Username not found!'
             return render_template('login.html', error=error)
 
     return render_template('login.html')
@@ -135,7 +140,7 @@ def is_logged_in(f):
 @app.route('/logout')
 def logout():
     session.clear()
-    flash('You are now logged out', 'success')
+    flash('You successfully logged out!', 'success')
     return redirect(url_for('login'))
 
 # RESET PASSWORD
@@ -181,23 +186,42 @@ def setpass():
                 # CLOSE CONNECTION
                 cur.close()
 
-                flash('Your password has successfully been changed', 'success')
+                flash('Your password has successfully been changed!', 'success')
                 return redirect(url_for('login'))
             else:
-                error = 'Invalid username or password'
+                error = 'Invalid username or password!'
                 return render_template('setpass.html', error=error)
 
         else:
-            error = 'Username not found'
+            error = 'Username not found!'
             return render_template('setpass.html', error=error)
 
     return render_template('setpass.html')
 
 # DASHBOARD ROUTE
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
+    # if request.method == 'POST':
+    #     # CONFIG TWILIO
+    #     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+    #     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+    #     client = Client(account_sid, auth_token)
+    #
+    #     call = client.calls.create(
+    #                             url='https://demo.twilio.com/welcome/voice/',
+    #                             from_=os.getenv('FROM_PHONE_NUMBER'),
+    #                             to=os.getenv('TO_PHONE_NUMBER')
+    #                         )
+    #
+    #     print(call.sid)
     return render_template('dashboard.html')
+
+# DELETE ROUTE
+@app.route('/delete')
+@is_logged_in
+def delete():
+    return render_template('delete.html')
 
 if __name__ == '__main__':
     # GET SECRET_KEY

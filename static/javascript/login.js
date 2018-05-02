@@ -1,7 +1,7 @@
-
 const hideAlert = () => {
   $('.alert').hide()
 }
+
 
 $(document).ready(() => {
   $('#inputUsername').click(hideAlert)

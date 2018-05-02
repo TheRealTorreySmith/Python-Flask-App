@@ -3,9 +3,31 @@
 {% block body %}
 
 <div class="jumbotron text-center">
-    <h1 class="display-3">Welcome, {{session.username}}!</h1>
-    <p class="lead">This is your dashboard.</p>
-    <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more &raquo;</a></p>
+  <h5 class="display-3 dash-welcome">Welcome, {{session.username}}!</h5>
+  <div class="row">
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-10 text-center">
+      <form action="" method="POST">
+        <div class="form-group">
+          <input type="text" name="phoneNumber" id="phoneNumberInput" class="form-control" placeholder="Phone Number To Call" value="{{request.form.phoneNumber}}" autofocus>
+        </div>
+        <div class="form-group">
+          <input type="text" name="voiceMessage" id="inputVoiceMessage" class="form-control" placeholder="Message That Will Be Spoken" value="{{request.form.voiceMessage}}">
+        </div>
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="record"> Record
+          </label>
+          <a class="btn btn-sm btn-primary change-password">Clear Fields</a>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block make-call-button" type="submit">Make Phone Call</button>
+        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
+      </form>
+    </div>
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+  </div>
 </div>
 
 {% endblock %}

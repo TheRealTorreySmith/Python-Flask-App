@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+{% include 'includes/_navbar.html' %}
+{% block body %}
+
+<div class="jumbotron text-center">
+    <p class="lead">Hello {{session.username}}, this will delete your profile.</p>
+    <p class="lead">Do you wish to continue?</p>
+    <p><a class="btn btn-primary btn-lg" role="button">Delete</a></p>
+</div>
+
+{% endblock %}
