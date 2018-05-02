@@ -20,7 +20,14 @@ app = Flask(__name__)
 # app.config['MYSQL_PASSWORD'] = 'Tfresh.2217'
 # app.config['MYSQL_DB'] = 'py_flask_app'
 # app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-# app.config['MYSQL_DB'] = os.environ['DATABASE_URL']
+
+# CONFIG
+app.config['MYSQL_HOST'] = 'torreys-python-flask-app.herokuapp.com'
+app.config['MYSQL_USER'] = 'b8510b849508af'
+app.config['MYSQL_PASSWORD'] = '93d2ce70'
+app.config['MYSQL_DB'] = os.environ['DATABASE_URL']
+app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+
 
 # INITIALIZE MYSQL
 mysql = MySQL(app)
