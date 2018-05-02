@@ -226,10 +226,10 @@ def dashboard():
 
 # HISTORY ROUTE
 
-# @app.route('/history')
-# @is_logged_in
-# def history():
-#     return render_template('history.html')
+@app.route('/history')
+@is_logged_in
+def history():
+    return render_template('history.html')
 
 # DELETE ROUTE
 @app.route('/delete')
