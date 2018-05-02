@@ -1,4 +1,4 @@
-{% extends 'layout.html' %}
+{% extends 'dash_layout.html' %}
 {% include 'includes/_navbar.html' %}
 {% block body %}
 
@@ -8,21 +8,20 @@
     <div class="col-lg-3 col-md-2 col-sm-1">
     </div>
     <div class="col-lg-6 col-md-8 col-sm-10 text-center">
-      <form action="" method="POST">
+      <form method="POST">
         <div class="form-group">
-          <input type="text" name="phoneNumber" id="phoneNumberInput" class="form-control" placeholder="Phone Number To Call" value="{{request.form.phoneNumber}}" autofocus>
+          <input type="text" name="phoneNumber" class="form-control" id="phoneNumberInput" placeholder="Phone Number To Call" value="{{request.form.phoneNumber}}" autofocus>
         </div>
         <div class="form-group">
-          <input type="text" name="voiceMessage" id="inputVoiceMessage" class="form-control" placeholder="Message That Will Be Spoken" value="{{request.form.voiceMessage}}">
+          <textarea type="text" name="voiceMessage" class="form-control" id="voiceMessageInput" placeholder="Message That Will Be Spoken" value="{{request.form.voiceMessage}}" rows="3"></textarea>
         </div>
         <div class="checkbox mb-3">
           <label>
-            <input type="checkbox" value="record"> Record
+            <input type="checkbox" value="record"> Record Conversation
           </label>
-          <a class="btn btn-sm btn-primary change-password">Clear Fields</a>
+          <a class="btn btn-sm btn-dark clear-fields">Clear Fields</a>
         </div>
         <button class="btn btn-lg btn-primary btn-block make-call-button" type="submit">Make Phone Call</button>
-        <p class="mt-5 mb-3 text-muted">&copy; 2018</p>
       </form>
     </div>
     <div class="col-lg-3 col-md-2 col-sm-1">

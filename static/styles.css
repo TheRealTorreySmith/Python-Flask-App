@@ -133,3 +133,7 @@ a:not([href]):not([tabindex]):hover {
 .dash-welcome {
   margin-bottom: 30px;
 }
+
+.clear-fields {
+  margin-left: 100px;
+}

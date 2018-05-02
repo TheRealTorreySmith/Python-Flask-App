@@ -5,6 +5,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 from twilio.rest import Client
+from twilio.twiml.voice_response import Play, VoiceResponse, Say
 from dotenv import load_dotenv
 from pathlib import Path
 env_path = Path('.') / '.env'
@@ -111,7 +112,6 @@ def login():
                 # PASSED
                 session['logged_in'] = True
                 session['username'] = username
-                flash('You are now logged in!', 'success')
                 return redirect(url_for('dashboard'))
             else:
                 error = 'Invalid login!'
@@ -215,7 +215,20 @@ def dashboard():
     #                         )
     #
     #     print(call.sid)
+    #
+    response = VoiceResponse()
+    response.say('Hello World')
+    response.play('https://api.twilio.com/Cowbell.mp3')
+
+    print(response)
     return render_template('dashboard.html')
+
+# HISTORY ROUTE
+
+@app.route('/history')
+@is_logged_in
+def history():
+    return render_template('history.html')
 
 # DELETE ROUTE
 @app.route('/delete')
