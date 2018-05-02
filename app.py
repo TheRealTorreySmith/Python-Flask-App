@@ -204,25 +204,25 @@ def setpass():
 @is_logged_in
 def dashboard():
     if request.method == 'POST':
-    #     # CONFIG TWILIO
-    #     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-    #     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-    #     client = Client(account_sid, auth_token)
-    #
-    #     call = client.calls.create(
-    #                             url='https://demo.twilio.com/welcome/voice/',
-    #                             from_=os.getenv('FROM_PHONE_NUMBER'),
-    #                             to=os.getenv('TO_PHONE_NUMBER')
-    #                         )
-    #
-    #     print(call.sid)
-    #
+       # CONFIG TWILIO
+        account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+        auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+        client = Client(account_sid, auth_token)
+
+        call = client.calls.create(
+                                url='https://demo.twilio.com/welcome/voice/',
+                                from_=os.getenv('FROM_PHONE_NUMBER'),
+                                to=os.getenv('TO_PHONE_NUMBER')
+                            )
+
+        print(call.sid)
+    
     # response = VoiceResponse()
     # response.say('Hello World')
     # response.play('https://api.twilio.com/Cowbell.mp3')
     #
     # print(response)
-    return render_template('dashboard.html')
+        return render_template('dashboard.html')
 
 # HISTORY ROUTE
 
