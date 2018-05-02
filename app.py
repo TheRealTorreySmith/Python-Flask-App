@@ -20,6 +20,7 @@ app.config['MYSQL_USER'] = 'torrey'
 app.config['MYSQL_PASSWORD'] = 'Tfresh.2217'
 app.config['MYSQL_DB'] = 'py_flask_app'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
+# app.config['SQLALCHEMY_DATABASE_URI'] = os.environ['DATABASE_URL']
 
 # INITIALIZE MYSQL
 mysql = MySQL(app)
