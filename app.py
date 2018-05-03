@@ -21,6 +21,9 @@ app = Flask(__name__)
 # app.config['MYSQL_DB'] = 'py_flask_app'
 # app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 
+# GET SECRET_KEY
+app.secret_key = os.environ.get('SECRET_KEY')
+
 # CONFIG
 app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
 app.config['MYSQL_USER'] = 'b8510b849508af'
@@ -245,6 +248,6 @@ def delete():
 
 if __name__ == '__main__':
     # GET SECRET_KEY
-    app.secret_key = os.environ.get('SECRET_KEY')
-    app.config['SESSION_TYPE'] = 'filesystem'
+    # app.secret_key = os.environ.get('SECRET_KEY')
+
     # app.run(debug=True)
