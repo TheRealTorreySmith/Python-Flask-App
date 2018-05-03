@@ -213,8 +213,9 @@ def setpass():
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    if request.method == 'POST':
-        return render_template('dashboard.html')
+    # if request.method == 'POST':
+    return render_template('dashboard.html')
+
        # CONFIG TWILIO
         # account_sid = os.getenv('TWILIO_ACCOUNT_SID')
         # auth_token = os.getenv('TWILIO_AUTH_TOKEN')
