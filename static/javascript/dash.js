@@ -5,7 +5,7 @@ const clearFields = () => {
 
 
 
-
+// DOCUMENT READY
 $(document).ready(() => {
   $('.clear-fields').click(clearFields)
 
@@ -18,5 +18,5 @@ $(document).ready(() => {
     }
   })
 
-  
+
 })
