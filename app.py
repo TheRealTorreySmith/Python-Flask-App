@@ -214,6 +214,7 @@ def setpass():
 @is_logged_in
 def dashboard():
     if request.method == 'POST':
+        return render_template('dashboard.html')
        # CONFIG TWILIO
         # account_sid = os.getenv('TWILIO_ACCOUNT_SID')
         # auth_token = os.getenv('TWILIO_AUTH_TOKEN')
@@ -231,7 +232,7 @@ def dashboard():
     # response.play('https://api.twilio.com/Cowbell.mp3')
     #
     # print(response)
-    return render_template('dashboard.html')
+
 
 # HISTORY ROUTE
 
