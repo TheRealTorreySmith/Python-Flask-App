@@ -25,10 +25,8 @@ app = Flask(__name__)
 app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
 app.config['MYSQL_USER'] = 'b8510b849508af'
 app.config['MYSQL_PASSWORD'] = '93d2ce70'
-app.config['MYSQL_DB'] = 'py_flask_app'
+app.config['MYSQL_DB'] = 'heroku_d9cecbb9ca72dc8'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-
-# mysql://b8510b849508af:93d2ce70@us-cdbr-iron-east-04.cleardb.net/heroku_d9cecbb9ca72dc8?reconnect=true
 
 # INITIALIZE MYSQL
 mysql = MySQL(app)
