@@ -250,5 +250,5 @@ def delete():
 
 if __name__ == '__main__':
     # GET SECRET_KEY
-    # app.secret_key = os.environ.get('SECRET_KEY')
+    app.secret_key = os.environ.get('SECRET_KEY')
     app.run(debug=True)
