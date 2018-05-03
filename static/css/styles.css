@@ -132,6 +132,7 @@ a:not([href]):not([tabindex]):hover {
 
 .dash-welcome {
   margin-bottom: 60px;
+  font-size: 40px;
 }
 
 .clear-fields {
@@ -140,4 +141,12 @@ a:not([href]):not([tabindex]):hover {
 
 .call-input-container {
   margin: auto;
+}
+
+#phoneNumberInput {
+  margin-bottom: 30px;
+}
+
+#voiceMessageInput {
+  margin-bottom: 30px;
 }
