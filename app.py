@@ -14,7 +14,7 @@ import os
 
 app = Flask(__name__)
 
-# CONFIG MYSQL
+# CONFIG LOCAL MYSQL
 # app.config['MYSQL_HOST'] = 'localhost'
 # app.config['MYSQL_USER'] = 'torrey'
 # app.config['MYSQL_PASSWORD'] = 'Tfresh.2217'
@@ -24,7 +24,7 @@ app = Flask(__name__)
 # GET SECRET_KEY
 app.secret_key = os.environ.get('SECRET_KEY')
 
-# CONFIG
+# CONFIG HEROKU MYSQL
 app.config['MYSQL_HOST'] = 'us-cdbr-iron-east-04.cleardb.net'
 app.config['MYSQL_USER'] = 'b8510b849508af'
 app.config['MYSQL_PASSWORD'] = '93d2ce70'
