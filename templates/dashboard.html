@@ -5,10 +5,8 @@
 <div class="jumbotron text-center">
   <h5 class="display-3 dash-welcome">Welcome, {{session.username}}!</h5>
   <div class="row">
-    <div class="col-lg-3 col-md-2 col-sm-1">
-    </div>
-    <div class="col-lg-6 col-md-8 col-sm-10 text-center">
-      <form method="POST">
+    <div class="col-lg-7 col-md-8 col-sm-10 text-center call-input-container">
+      <form class="call-input-form" method="POST">
         <div class="form-group">
           <input type="text" name="phoneNumber" class="form-control" id="phoneNumberInput" placeholder="Phone Number To Call" value="{{request.form.phoneNumber}}" autofocus>
         </div>
@@ -24,9 +22,9 @@
         <button class="btn btn-lg btn-primary btn-block make-call-button" type="submit">Make Phone Call</button>
       </form>
     </div>
-    <div class="col-lg-3 col-md-2 col-sm-1">
-    </div>
+      {% include 'includes/_phone_number_pad.html' %}
   </div>
 </div>
+
 
 {% endblock %}

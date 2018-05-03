@@ -131,9 +131,13 @@ a:not([href]):not([tabindex]):hover {
 /* DASHBOARD */
 
 .dash-welcome {
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 }
 
 .clear-fields {
   margin-left: 100px;
+}
+
+.call-input-container {
+  margin: auto;
 }
