@@ -231,7 +231,7 @@ def dashboard():
     # response.play('https://api.twilio.com/Cowbell.mp3')
     #
     # print(response)
-        return render_template('dashboard.html')
+    return render_template('dashboard.html')
 
 # HISTORY ROUTE
 
