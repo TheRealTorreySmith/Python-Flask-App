@@ -1,7 +1,7 @@
 # IMPORTS
 from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
 from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField, HiddenField, BooleanField, SubmitField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
 from twilio.rest import Client
@@ -213,50 +213,65 @@ def setpass():
 class CallForm(Form):
     phoneNumber = StringField('phoneNumber', [validators.Length(min=10, max=10)])
     voiceMessage = StringField('voiceMessage', [validators.Length(min=6, max=300)])
+    recordConversation = BooleanField('Record Conversation')
+    SaveToHistory = BooleanField('Save To History')
+    makeCall = BooleanField('Make A Call')
+    sendText = BooleanField('Send A Text')
 
 # DASHBOARD ROUTE
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    if request.method == 'POST':
-      #   form = CallForm(request.form)
-      #
-      #   # GET CALL FORM FIELDS
-      #   phoneNumber = request.form['phoneNumber']
-      #   voiceMessage = request.form['voiceMessage']
-      #
-      # # CONFIG TWILIO
-      #   account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-      #   auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-      #   client = Client(account_sid, auth_token)
-      #
-      #   os.environ['TO_PHONE_NUMBER'] = phoneNumber
-      #   os.environ['VOICE_MESSAGE'] = voiceMessage
+    form = CallForm(request.form)
+    if request.method == 'POST' and form.makeCall.data:
+        # GET CALL FORM FIELDS
+        phoneNumber = request.form['phoneNumber']
+        message = request.form['message']
 
-        # message = client.messages \
-        #     .create(
-        #          body="This is the ship that made the Kessel Run in fourteen parsecs?",
-        #          from_=os.getenv('FROM_PHONE_NUMBER'),
-        #          to=os.getenv('TO_PHONE_NUMBER')
-        #      )
-        #
-        # print(message.sid)
+        # CONFIG TWILIO
+        account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+        auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+        client = Client(account_sid, auth_token)
 
-        # call = client.calls.create(
-        #                         url='https://torreys-python-flask-app.herokuapp.com/voice/',
-        #                         from_=os.getenv('FROM_PHONE_NUMBER'),
-        #                         to=os.getenv('TO_PHONE_NUMBER')
-        #                     )
-        #
-        # print(call.sid)
+        os.environ['TO_PHONE_NUMBER'] = phoneNumber
+        os.environ['MESSAGE'] = message
+
+        call = client.calls.create(
+                                url=os.getenv('VOICE_URL'),
+                                from_=os.getenv('FROM_PHONE_NUMBER'),
+                                to=os.getenv('TO_PHONE_NUMBER')
+                                )
+
+        print(call.sid)
+        return render_template('dashboard.html', form=form)
+
+    if request.method == 'POST' and form.sendText.data:
+
+        # GET CALL FORM FIELDS
+        phoneNumber = request.form['phoneNumber']
+        message = request.form['message']
+
+        # CONFIG TWILIO
+        account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+        auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+        client = Client(account_sid, auth_token)
+
+        os.environ['TO_PHONE_NUMBER'] = phoneNumber
+        os.environ['MESSAGE'] = message
+
+        message = client.messages \
+            .create(
+                 body=os.getenv('MESSAGE'),
+                 from_=os.getenv('FROM_PHONE_NUMBER'),
+                 to=os.getenv('TO_PHONE_NUMBER')
+             )
+
+        print(message.sid)
         return render_template('dashboard.html')
     else:
         return render_template('dashboard.html')
 
-
-
-
-# # TWIML RESPONSE ROUTE
+# TWIML RESPONSE ROUTE
 @app.route("/voice", methods=['GET', 'POST'])
 def voice():
 

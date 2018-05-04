@@ -175,7 +175,7 @@ a:not([href]):not([tabindex]):hover {
 }
 
 .phone-select-button {
-  margin-right: 20px;
+  margin-right: 40px;
 }
 
 .phone-select-button:hover {
@@ -184,10 +184,6 @@ a:not([href]):not([tabindex]):hover {
 
 .message-select-button:hover {
   color: white !important;
-}
-
-.message-select-button {
-  margin-left: 20px;
 }
 
 #make-call-button {
