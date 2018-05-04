@@ -27,27 +27,42 @@
   cursor: pointer;
 }
 
-.btn-outline-success {
+.search-button,
+.logout-button,
+.register-button,
+.login-button {
   border-color: grey;
   color: white;
   margin-right: 10px;
 }
 
-.btn-outline-success:hover {
+.search-button:hover,
+.logout-button:hover,
+.register-button:hover,
+.login-button:hover {
   background-color: #0069d9;
   border-color: #0069d9;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled):active {
+.search-button:not(:disabled):not(.disabled):active,
+.logout-button:not(:disabled):not(.disabled):active,
+.register-button:not(:disabled):not(.disabled):active,
+.login-button:not(:disabled):not(.disabled):active {
   background-color: #0069d9;
   border-color: #0069d9;
 }
 
-.btn-outline-success:focus {
+.search-button:focus,
+.logout-button:focus,
+.register-button:focus,
+.login-button:focus {
   box-shadow: 0 0 0 0.2rem #0069d9;
 }
 
-.btn-outline-success:not(:disabled):not(.disabled):active:focus {
+.search-button:not(:disabled):not(.disabled):active:focus,
+.logout-button:not(:disabled):not(.disabled):active:focus,
+.register-button:not(:disabled):not(.disabled):active:focus,
+.login-button:not(:disabled):not(.disabled):active:focus {
   box-shadow: 0 0 0 0.2rem white;
 }
 
@@ -136,7 +151,11 @@ a:not([href]):not([tabindex]):hover {
 }
 
 .clear-fields {
-  margin-left: 100px;
+  margin-left: 40px;
+}
+
+.save-to-history {
+  margin-left: 12px;
 }
 
 .call-input-container {
@@ -149,4 +168,32 @@ a:not([href]):not([tabindex]):hover {
 
 #voiceMessageInput {
   margin-bottom: 30px;
+}
+
+.phone-or-message-container {
+  margin-bottom: 50px;
+}
+
+.phone-select-button {
+  margin-right: 20px;
+}
+
+.phone-select-button:hover {
+  color: white !important;
+}
+
+.message-select-button:hover {
+  color: white !important;
+}
+
+.message-select-button {
+  margin-left: 20px;
+}
+
+#make-call-button {
+  margin-top: 30px;
+}
+
+#send-text-button {
+  margin-top: 30px;
 }

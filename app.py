@@ -209,31 +209,68 @@ def setpass():
 
     return render_template('setpass.html')
 
+# DASHBOARD CALL FORM
+class CallForm(Form):
+    phoneNumber = StringField('phoneNumber', [validators.Length(min=10, max=10)])
+    voiceMessage = StringField('voiceMessage', [validators.Length(min=6, max=300)])
+
 # DASHBOARD ROUTE
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
-    # if request.method == 'POST':
-    return render_template('dashboard.html')
+    if request.method == 'POST':
+      #   form = CallForm(request.form)
+      #
+      #   # GET CALL FORM FIELDS
+      #   phoneNumber = request.form['phoneNumber']
+      #   voiceMessage = request.form['voiceMessage']
+      #
+      # # CONFIG TWILIO
+      #   account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+      #   auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+      #   client = Client(account_sid, auth_token)
+      #
+      #   os.environ['TO_PHONE_NUMBER'] = phoneNumber
+      #   os.environ['VOICE_MESSAGE'] = voiceMessage
 
-       # CONFIG TWILIO
-        # account_sid = os.getenv('TWILIO_ACCOUNT_SID')
-        # auth_token = os.getenv('TWILIO_AUTH_TOKEN')
-        # client = Client(account_sid, auth_token)
+        # message = client.messages \
+        #     .create(
+        #          body="This is the ship that made the Kessel Run in fourteen parsecs?",
+        #          from_=os.getenv('FROM_PHONE_NUMBER'),
+        #          to=os.getenv('TO_PHONE_NUMBER')
+        #      )
         #
+        # print(message.sid)
+
         # call = client.calls.create(
-        #                         url='https://demo.twilio.com/welcome/voice/',
+        #                         url='https://torreys-python-flask-app.herokuapp.com/voice/',
         #                         from_=os.getenv('FROM_PHONE_NUMBER'),
         #                         to=os.getenv('TO_PHONE_NUMBER')
         #                     )
         #
         # print(call.sid)
-    # response = VoiceResponse()
-    # response.say('Hello World')
-    # response.play('https://api.twilio.com/Cowbell.mp3')
-    #
-    # print(response)
+        return render_template('dashboard.html')
+    else:
+        return render_template('dashboard.html')
 
+
+
+
+# # TWIML RESPONSE ROUTE
+@app.route("/voice", methods=['GET', 'POST'])
+def voice():
+
+    # """Respond to incoming phone calls with a text message."""
+    # Start our TwiML response
+    resp = VoiceResponse()
+
+    # Read a message aloud to the caller
+    resp.say("Hello! You will get an SMS message soon.")
+
+    # Also tell Twilio to send a text message to the caller
+    # resp.sms("This is the ship that made the Kessel Run in fourteen parsecs?")
+
+    return str(resp)
 
 # HISTORY ROUTE
 

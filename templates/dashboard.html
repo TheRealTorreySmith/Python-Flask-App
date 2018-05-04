@@ -6,20 +6,28 @@
   <div class="row">
     <div class="col-lg-7 col-md-8 col-sm-10 text-center call-input-container">
       <h5 class="display-3 dash-welcome">Welcome, {{session.username}}!</h5>
+      <div class="phone-or-message-container">
+        <button class="btn btn-lg btn-primary btn-outline-primary phone-select-button">Phone Call</button>
+        <button class="btn btn-lg btn-success btn-outline-success message-select-button">Text Message</button>
+      </div>
       <form class="call-input-form" method="POST">
         <div class="form-group">
-          <input type="text" name="phoneNumber" class="form-control" id="phoneNumberInput" placeholder="Phone Number To Call" value="{{request.form.phoneNumber}}" autofocus>
+          <input type="text" name="phoneNumber" class="form-control" id="phoneNumberInput" placeholder="Phone Number" value="{{request.form.phoneNumber}}" autofocus>
         </div>
         <div class="form-group">
-          <textarea type="text" name="voiceMessage" class="form-control" id="voiceMessageInput" placeholder="Message That Will Be Spoken" value="{{request.form.voiceMessage}}" rows="3"></textarea>
+          <textarea type="text" name="voiceMessage" class="form-control" id="voiceMessageInput" placeholder="Message" value="{{request.form.voiceMessage}}" rows="3"></textarea>
         </div>
         <div class="checkbox mb-3">
           <label>
             <input type="checkbox" value="record"> Record Conversation
           </label>
+          <label>
+            <input class="save-to-history" type="checkbox" value="save"> Save To History
+          </label>
           <a class="btn btn-sm btn-dark clear-fields">Clear Fields</a>
         </div>
-        <button class="btn btn-lg btn-primary btn-block make-call-button" type="submit">Make Phone Call</button>
+        <button id="make-call-button" class="btn btn-lg btn-primary btn-block make-call-button" type="submit">Make Phone Call</button>
+        <button id="send-text-button" class="btn btn-lg btn-success btn-block" type="submit">Send Text Message</button>
       </form>
     </div>
       {% include 'includes/_phone_number_pad.html' %}
