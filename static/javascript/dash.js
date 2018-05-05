@@ -1,5 +1,6 @@
-// HIDES THE SEND TEXT MESSAGE BUTTON
+// DEFAULT HIDES THE SUBMIT BUTTON
 $('#send-text-button').hide()
+$('#make-call-button').hide()
 
 // CLEARS INPUT FIELDS ON DASHBOARD
 const clearFields = () => {
@@ -17,8 +18,9 @@ $('.num').click(function () {
   }
 })
 
-const clickMessageButton = () => {
+const clickMessageButton = (event) => {
   event.preventDefault()
+  $('.submit-button-spacer').hide()
   $('#send-text-button').show()
   $('#make-call-button').hide()
   $('.phone-select-button').css('color', '#0069d9')
@@ -27,6 +29,7 @@ const clickMessageButton = () => {
   $('.message-select-button').css('background-color', '#28a745')
   $('.call-check').prop('checked', false)
   $('.text-check').prop('checked', true)
+  setTimeout(() => {$('.close').trigger('click')},1500)
 }
 
 const clickPhoneButton = (event) => {
@@ -39,6 +42,7 @@ const clickPhoneButton = (event) => {
   $('.message-select-button').css('background-color', '')
   $('.call-check').prop('checked', true)
   $('.text-check').prop('checked', false)
+  setTimeout(() => {$('.close').trigger('click')},1500)
 }
 
 // DOCUMENT READY

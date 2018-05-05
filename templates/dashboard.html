@@ -3,6 +3,8 @@
 {% block body %}
 
 <div class="jumbotron text-center">
+  {% include 'includes/_calling_modal.html' %}
+  {% include 'includes/_texting_modal.html' %}
   <div class="row">
     <div class="col-lg-7 col-md-8 col-sm-10 text-center call-input-container">
       <h5 class="display-3 dash-welcome">Welcome, {{session.username}}!</h5>
@@ -11,11 +13,11 @@
             <label>
               <input type="checkbox" name="makeCall" value="makeCall" class="call-check" hidden>
             </label>
-            <button class="btn btn-lg btn-primary btn-outline-primary phone-select-button">Phone Call</button>
+            <button class="btn btn-lg btn-primary btn-outline-primary phone-select-button" data-toggle="modal" data-target="#callingModal">Phone Call</button>
             <label>
               <input type="checkbox" name="sendText" value="sendText" class="text-check" hidden>
             </label>
-            <button class="btn btn-lg btn-success btn-outline-success message-select-button">Text Message</button>
+            <button class="btn btn-lg btn-success btn-outline-success message-select-button" data-toggle="modal" data-target="#textingModal" >Text Message</button>
           </div>
         <div class="form-group">
           <input type="text" name="phoneNumber" class="form-control" id="phoneNumberInput" placeholder="Phone Number" value="{{request.form.phoneNumber}}" autofocus>
@@ -32,7 +34,8 @@
           </label>
           <a class="btn btn-sm btn-dark clear-fields">Clear Fields</a>
         </div>
-        <label for="make-call-button"></label>
+        <div class="submit-button-spacer">
+        </div>
         <button id="make-call-button" class="btn btn-lg btn-primary btn-block" type="submit">Make Phone Call</button>
         <button id="send-text-button" class="btn btn-lg btn-success btn-block" type="submit">Send Text Message</button>
       </form>

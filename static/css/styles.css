@@ -193,3 +193,27 @@ a:not([href]):not([tabindex]):hover {
 #send-text-button {
   margin-top: 30px;
 }
+
+.submit-button-spacer {
+  height: 47.6px;
+  margin-top:30px;
+  width: 100%;
+}
+
+/* MODALS */
+
+#textingModal {
+  margin-top: 150px;
+}
+
+#callingModal {
+  margin-top: 150px;
+}
+
+.modal-body {
+  font-size: 20px;
+}
+
+.call-success {
+  color: #0069d9;
+}
