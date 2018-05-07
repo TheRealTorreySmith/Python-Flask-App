@@ -243,12 +243,17 @@ def dashboard():
         # COMMIT TO DB
         mysql.connection.commit()
 
+        # FETCHES DATA
         data = cur.fetchall()
 
         # CLOSE CONNECTION
         cur.close()
 
     if request.method == 'POST' and form.makeCall.data:
+
+        # GET CALL FORM FIELDS
+        phoneNumber = request.form['phoneNumber']
+        message = request.form['message']
 
         # CONFIG TWILIO
         account_sid = os.getenv('TWILIO_ACCOUNT_SID')
@@ -263,8 +268,12 @@ def dashboard():
                                 from_=os.getenv('FROM_PHONE_NUMBER'),
                                 to=os.getenv('TO_PHONE_NUMBER')
                                 )
+        response = VoiceResponse()
+        response.say('Bom dia.', voice='alice', language='pt-BR', loop=2)
 
+        print(response)
         print(call.sid)
+
         return render_template('dashboard.html', form=form)
 
     if request.method == 'POST' and form.sendText.data:
@@ -289,20 +298,32 @@ def dashboard():
              )
 
         print(message.sid)
-        return render_template('dashboard.html')
+        return render_template('dashboard.html', form=form)
     else:
         return render_template('dashboard.html')
 
 # TWIML RESPONSE ROUTE
-@app.route("/voice", methods=['GET', 'POST'])
-def voice():
-    # Start our TwiML response
-    resp = VoiceResponse()
-
-    # Read a message aloud to the caller
-    resp.say(os.getenv('MESSAGE'))
-
-    return str(resp)
+# @app.route("/voice", methods=['GET', 'POST'])
+# def voice():
+#
+#     # CONFIG TWILIO
+#     account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+#     auth_token = os.getenv('TWILIO_AUTH_TOKEN')
+#     client = Client(account_sid, auth_token)
+#
+#     # GET CALL FORM FIELDS
+#     phoneNumber = request.form['phoneNumber']
+#     message = request.form['message']
+#
+#     # Start our TwiML response
+#     resp = VoiceResponse()
+#
+#     os.environ['MESSAGE'] = message
+#
+#     # Read a message aloud to the caller
+#     resp.say(os.getenv('MESSAGE'))
+#
+#     return str(resp)
 
 # DASHBOARD MENU ROUTES
 # HISTORY ROUTE
