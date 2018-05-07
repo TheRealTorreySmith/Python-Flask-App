@@ -108,3 +108,6 @@ node_modules/
 
 # MAC STUFF
 DS_Stores/
+
+# DB STUFF
+schema.sql

@@ -34,6 +34,7 @@ const clickMessageButton = (event) => {
 
 const clickPhoneButton = (event) => {
   event.preventDefault()
+  $('.submit-button-spacer').hide()
   $('#make-call-button').show()
   $('#send-text-button').hide()
   $('.phone-select-button').css('color', 'white')

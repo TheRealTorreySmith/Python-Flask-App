@@ -1,14 +1,13 @@
 {% extends 'layout.html' %}
 {% include 'includes/_home_navbar.html' %}
 {% block body %}
-<h2 class="login-title text-center">Login</h2>
+<h2 class="login-title text-center animated bounceInDown">Login</h2>
 {% from "includes/_formhelpers.html" import render_field %}
 <div class="row">
   <div class="col-lg-3 col-md-2 col-sm-1">
   </div>
-  <div class="col-lg-6 col-md-8 col-sm-10 text-center">
+  <div class="col-lg-6 col-md-8 col-sm-10 text-center animated fadeIn">
     <form action="" method="POST">
-      <img class="mb-4" src="https://cdn-images-1.medium.com/max/1224/1*7EUX9QIjq2x1JyFKcjhXsA.png" alt="" width="200" height="100">
       <div class="form-group">
         <label for="inputUsername" class="sr-only">Username</label>
         <input type="text" name="username" id="inputUsername" class="form-control" placeholder="Username" value="{{request.form.username}}" autofocus>

@@ -2,10 +2,26 @@
 {% include 'includes/_home_navbar.html' %}
 {% block body %}
 
-<div class="jumbotron text-center">
-    <h1 class="display-3">Python/Flask App Hoo-Rah!</h1>
-    <p class="lead">This is just for practice.</p>
-    <p><a class="btn btn-primary btn-lg" href="/about" role="button">Learn more &raquo;</a></p>
+<div class="jumbotron text-center animated zoomIn">
+  <div class="row">
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <img id="phone" class="animated shake-constant float-left" src="../../static/images/pay-phone.svg" alt="" width="100" height="200">
+      <img id="anonymous-image" class="animated slideInRight" src="../../static/images/anonymous-2.png" alt="" width="300" height="300" hidden>
+    </div>
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+    <div class="col-lg-6 col-md-8 col-sm-10">
+      <p><a class="btn btn-primary btn-lg register-main-btn" href="/register" role="button">Try Me &raquo;</a></p>
+    </div>
+    <div class="col-lg-3 col-md-2 col-sm-1">
+    </div>
+  </div>
 </div>
 
 {% endblock %}

@@ -11,6 +11,12 @@
   width: 100%;
 }
 
+/* LANDING */
+
+#phone {
+  margin-bottom: 100px;
+}
+
 /* MESSAGES */
 
 .flashes {
@@ -94,14 +100,19 @@ a:not([href]):not([tabindex]):hover {
 /* REGISTER */
 
 .register-title {
-  margin-bottom: 10px;
-  margin-top: 20px;
+  margin-bottom: 20px;
+  margin-top: 30px;
+}
+
+.logo-image {
+  margin-top: 50px;
 }
 
 /* LOGIN */
 
 .login-title {
   margin-bottom: 20px;
+  margin-top: 30px;
 }
 
 #inputUsername {
@@ -141,6 +152,7 @@ a:not([href]):not([tabindex]):hover {
 
 .reset-password-title {
   margin-top: 30px;
+  margin-bottom: 20px;
 }
 
 /* DASHBOARD */
@@ -198,6 +210,16 @@ a:not([href]):not([tabindex]):hover {
   height: 47.6px;
   margin-top:30px;
   width: 100%;
+}
+
+.register-main-btn {
+  margin-top: 40px;
+}
+
+/* HISTORY */
+
+.history-title {
+  margin-bottom: 40px;
 }
 
 /* MODALS */

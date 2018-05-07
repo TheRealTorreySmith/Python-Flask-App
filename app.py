@@ -1,5 +1,5 @@
 # IMPORTS
-from flask import Flask, render_template, flash, redirect, url_for, session, request, logging
+from flask import Flask, render_template, flash, redirect, url_for, session, request, logging, json
 from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, HiddenField, BooleanField, SubmitField, validators
 from passlib.hash import sha256_crypt
@@ -212,21 +212,43 @@ def setpass():
 # DASHBOARD CALL FORM
 class CallForm(Form):
     phoneNumber = StringField('phoneNumber', [validators.Length(min=10, max=10)])
-    voiceMessage = StringField('voiceMessage', [validators.Length(min=6, max=300)])
+    message = StringField('message', [validators.Length(min=6, max=300)])
     recordConversation = BooleanField('Record Conversation')
     SaveToHistory = BooleanField('Save To History')
     makeCall = BooleanField('Make A Call')
     sendText = BooleanField('Send A Text')
+    saveToHistory = BooleanField('Save To History')
 
 # DASHBOARD ROUTE
 @app.route('/dashboard', methods=['GET', 'POST'])
 @is_logged_in
 def dashboard():
     form = CallForm(request.form)
-    if request.method == 'POST' and form.makeCall.data:
+    if request.method == 'POST' and form.saveToHistory.data:
         # GET CALL FORM FIELDS
+        username = request.form['currentUser']
         phoneNumber = request.form['phoneNumber']
+        if form.makeCall.data:
+            method = "Call"
+        else:
+            method = "Text"
         message = request.form['message']
+
+        # CREATE CURSOR
+        cur = mysql.connection.cursor()
+        cur.execute("""
+            INSERT INTO contacts(username, phone_number, method, message) VALUES(%s, %s, %s, %s)
+            """, (username, phoneNumber, method, message))
+
+        # COMMIT TO DB
+        mysql.connection.commit()
+
+        data = cur.fetchall()
+
+        # CLOSE CONNECTION
+        cur.close()
+
+    if request.method == 'POST' and form.makeCall.data:
 
         # CONFIG TWILIO
         account_sid = os.getenv('TWILIO_ACCOUNT_SID')
@@ -274,27 +296,38 @@ def dashboard():
 # TWIML RESPONSE ROUTE
 @app.route("/voice", methods=['GET', 'POST'])
 def voice():
-
-    # """Respond to incoming phone calls with a text message."""
     # Start our TwiML response
     resp = VoiceResponse()
 
     # Read a message aloud to the caller
-    resp.say("Hello! You will get an SMS message soon.")
-
-    # Also tell Twilio to send a text message to the caller
-    # resp.sms("This is the ship that made the Kessel Run in fourteen parsecs?")
+    resp.say(os.getenv('MESSAGE'))
 
     return str(resp)
 
+# DASHBOARD MENU ROUTES
 # HISTORY ROUTE
-
-@app.route('/history')
+@app.route('/history', methods=['GET'])
 @is_logged_in
 def history():
-    return render_template('history.html')
 
-# DELETE ROUTE
+    # CREATE CURSOR
+    cur = mysql.connection.cursor()
+
+    cur.execute("""
+        SELECT * FROM contacts
+        """)
+
+    # COMMIT TO DB
+    mysql.connection.commit()
+
+    # FETCH DATA
+    data = cur.fetchall()
+
+    # CLOSE CONNECTION
+    cur.close()
+    return render_template('history.html', data=data)
+
+# EDIT PROFILE ROUTE
 @app.route('/delete')
 @is_logged_in
 def delete():

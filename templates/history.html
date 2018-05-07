@@ -2,9 +2,46 @@
 {% include 'includes/_navbar.html' %}
 {% block body %}
 
-<div class="jumbotron text-center">
-    <h1 class="display-3">History page!</h1>
-    <p class="lead">This page will show the recent call history.</p>
+<div class="jumbotron text-center animated zoomIn">
+  <h5 class="display-3 history-title">{{data[0].username}}'s History:</h5>
+    <table class="table table-hover table-dark">
+    <thead>
+      <tr>
+        <th scope="col">Contact Number</th>
+        <th scope="col">Method</th>
+        <th scope="col">Message</th>
+        <th scope="col">Timestamp</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in data %}
+        <tr>
+         <td class="c1">{{item.phone_number}}</td>
+         <td class="c2">{{item.method}}</td>
+         <td class="c3">{{item.message}}</td>
+         <td class="c4">{{item.call_message_date}}</td>
+
+       </tr>
+      {% endfor %}
+
+      <!-- <tr>
+        <th scope="row">1</th>
+
+
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td colspan="2">Larry the Bird</td>
+        <td>@twitter</td>
+      </tr> -->
+    </tbody>
+  </table>
 </div>
 
 {% endblock %}
