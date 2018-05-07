@@ -330,9 +330,8 @@ def history():
     # CREATE CURSOR
     cur = mysql.connection.cursor()
 
-    cur.execute("""
-        SELECT * FROM contacts
-        """)
+    username = session['username']
+    cur.execute("""SELECT * FROM contacts WHERE username = %s""", [username])
 
     # COMMIT TO DB
     mysql.connection.commit()
