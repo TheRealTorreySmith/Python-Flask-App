@@ -268,11 +268,12 @@ def dashboard():
                                 from_=os.getenv('FROM_PHONE_NUMBER'),
                                 to=os.getenv('TO_PHONE_NUMBER')
                                 )
+        print(call.sid)
+
         response = VoiceResponse()
         response.say('Bom dia.', voice='alice', language='pt-BR', loop=2)
 
         print(response)
-        print(call.sid)
 
         return render_template('dashboard.html', form=form)
 
